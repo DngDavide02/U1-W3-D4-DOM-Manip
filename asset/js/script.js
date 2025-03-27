@@ -66,9 +66,8 @@ for (i = 0; i < 3; i++) {
     }
   }
 }
-// Funzione per evidenziare le celle nel tabellino
 function highlightLilNumber(num) {
-  const cell = document.getElementById("lilN" + num); // Corretto l'ID
+  const cell = document.getElementById("lilN" + num);
   if (cell) {
     cell.classList.add("hoverColor");
   }
