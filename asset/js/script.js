@@ -28,7 +28,7 @@ for (i = 0; i < 10; i++) {
 let numAlredyExtracted = [];
 function randomNumber() {
   let randomNum = Math.floor(Math.random() * 100);
-  // 5) non far uscire lo stesso numero
+
   if (numAlredyExtracted.includes(randomNum)) {
     randomNumber();
     return;
@@ -41,5 +41,35 @@ function randomNumber() {
   let extraction = document.getElementById("n" + randomNum);
   if (extraction) {
     extraction.classList.add("hoverColor");
+  }
+  highlightLilNumber(randomNum);
+}
+
+// 6) crea il tabellino di 24 celle con numeri casuali da 1 a 99 che evidenzia i numeri estratti
+const lilTable = document.getElementById("lilTable");
+let lilTableNumbers = [];
+while (lilTableNumbers.length < 24) {
+  let randomNum = Math.floor(Math.random() * 100);
+  if (!lilTableNumbers.includes(randomNum)) {
+    lilTableNumbers.push(randomNum);
+  }
+}
+let lilNumIndex = 0;
+for (i = 0; i < 3; i++) {
+  let row = lilTable.insertRow();
+  for (j = 0; j < 8; j++) {
+    if (lilNumIndex < 24) {
+      let cell = row.insertCell();
+      cell.textContent = lilTableNumbers[lilNumIndex];
+      cell.id = "lilN" + lilTableNumbers[lilNumIndex];
+      lilNumIndex++;
+    }
+  }
+}
+// Funzione per evidenziare le celle nel tabellino
+function highlightLilNumber(num) {
+  const cell = document.getElementById("lilN" + num); // Corretto l'ID
+  if (cell) {
+    cell.classList.add("hoverColor");
   }
 }
